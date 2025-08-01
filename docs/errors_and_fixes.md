@@ -2,7 +2,7 @@
 
 ---
 
-## ❌ 1. Velero pod CrashLoopBackOff
+##  1. Velero pod CrashLoopBackOff
 
 **Error:**
 ```
@@ -34,7 +34,7 @@ kubectl apply -f velero-rbac.yaml
 
 ---
 
-## ❌ 2. PVC Stuck in Pending
+##  2. PVC Stuck in Pending
 
 **Error:** Pod stuck in `Pending`, PVC was not binding to a volume.
 
@@ -53,7 +53,7 @@ kubectl get sc
 
 ---
 
-## ❌ 3. S3 Bucket `BucketNotEmpty` Error
+##  3. S3 Bucket `BucketNotEmpty` Error
 
 **Error:**
 ```
@@ -75,7 +75,7 @@ aws s3api list-object-versions --bucket jcps-velero-backups --output json | jq -
 
 ---
 
-## ❌ 4. Velero Install Fails on `--default-volumes-to-restic`
+##  4. Velero Install Fails on `--default-volumes-to-restic`
 
 **Error:**
 ```

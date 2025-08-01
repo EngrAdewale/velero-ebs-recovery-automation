@@ -4,7 +4,7 @@ This document outlines the original manual process for recovering a Kubernetes a
 
 ---
 
-## 🧱 1. Create Namespace and Workload
+##  1. Create Namespace and Workload
 
 ```bash
 kubectl create ns aee
@@ -17,7 +17,7 @@ kubectl apply -f etx-deployment.yaml
 
 ---
 
-## 💾 2. Backup with Velero
+##  2. Backup with Velero
 
 ```bash
 velero backup create aee-backup --include-namespaces aee --wait
@@ -25,7 +25,7 @@ velero backup create aee-backup --include-namespaces aee --wait
 
 ---
 
-## 💥 3. Simulate Disaster
+##  3. Simulate Disaster
 
 ```bash
 kubectl delete ns aee
@@ -33,7 +33,7 @@ kubectl delete ns aee
 
 ---
 
-## ♻️ 4. Restore Backup
+##  4. Restore Backup
 
 ```bash
 velero restore create aee-restore   --from-backup aee-backup   --namespace-mappings aee:aee-a   --wait
@@ -41,7 +41,7 @@ velero restore create aee-restore   --from-backup aee-backup   --namespace-mappi
 
 ---
 
-## 🔍 5. Validate Recovery
+##  5. Validate Recovery
 
 ```bash
 kubectl get pod -n aee-a
@@ -52,7 +52,7 @@ kubectl exec -n aee-a etx-pod -- cat /data/hello.txt
 
 ---
 
-## ⛔ Pain Points
+##  Pain Points
 
 - Human error during restore command
 - Forgot `--namespace-mappings`

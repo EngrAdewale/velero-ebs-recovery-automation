@@ -4,7 +4,7 @@ This step-by-step guide walks you through setting up and testing an EBS volume s
 
 ---
 
-## 📦 Requirements
+##  Requirements
 
 - AWS CLI, `kubectl`, `eksctl`, `velero`, `jq`, and `Python 3.8+`
 - An IAM role with admin access
@@ -14,7 +14,7 @@ This step-by-step guide walks you through setting up and testing an EBS volume s
 
 ---
 
-## 🛠 1. Create EKS Cluster
+##  1. Create EKS Cluster
 
 ```bash
 eksctl create cluster \
@@ -29,7 +29,7 @@ eksctl create cluster \
 
 ---
 
-## 🔐 2. Create IAM Policy for Velero
+##  2. Create IAM Policy for Velero
 
 ```bash
 aws iam create-policy \
@@ -39,7 +39,7 @@ aws iam create-policy \
 
 ---
 
-## 🔗 3. Attach IAM Service Account
+##  3. Attach IAM Service Account
 
 ```bash
 eksctl create iamserviceaccount \
@@ -53,7 +53,7 @@ eksctl create iamserviceaccount \
 
 ---
 
-## 💾 4. Install Velero with AWS Plugin
+##  4. Install Velero with AWS Plugin
 
 ```bash
 velero install \
@@ -71,7 +71,7 @@ velero install \
 
 ---
 
-## 🧪 5. Deploy Sample Workload
+##  5. Deploy Sample Workload
 
 ```bash
 kubectl create ns aee
@@ -132,7 +132,7 @@ kubectl apply -f manifests/sample-etx-deployment.yaml
 
 ---
 
-## 📸 6. Backup the Workload
+##  6. Backup the Workload
 
 ```bash
 velero backup create aee-backup --include-namespaces aee --wait
@@ -140,7 +140,7 @@ velero backup create aee-backup --include-namespaces aee --wait
 
 ---
 
-## 💣 7. Simulate a Disaster
+##  7. Simulate a Disaster
 
 ```bash
 kubectl delete ns aee
@@ -148,7 +148,7 @@ kubectl delete ns aee
 
 ---
 
-## 🤖 8. Run Python Automation for Restore
+##  8. Run Python Automation for Restore
 
 ```bash
 python3 automation/velero_restore_automation.py --backup aee-backup --from-ns aee --to-ns aee-a
@@ -156,7 +156,7 @@ python3 automation/velero_restore_automation.py --backup aee-backup --from-ns ae
 
 ---
 
-## 🔍 9. Verify Recovery
+##  9. Verify Recovery
 
 ```bash
 kubectl get pods,pvc,secrets -n aee-a
@@ -171,7 +171,7 @@ Hello from AEE
 
 ---
 
-## 🧼 10. Clean Up (Optional)
+##  10. Clean Up (Optional)
 
 ```bash
 bash scripts/delete_versioned_s3_bucket.sh
@@ -179,7 +179,7 @@ bash scripts/delete_versioned_s3_bucket.sh
 
 ---
 
-## 📁 Reference Files in This Repo
+##  Reference Files in This Repo
 
 - `automation/velero_restore_automation.py`: Python restore script
 - `manifests/sample-etx-deployment.yaml`: Test workload
